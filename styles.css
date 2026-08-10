@@ -64,7 +64,7 @@ a {
   overflow: hidden;
   appearance: none;
   background: #071427;
-  transition: opacity 420ms ease, visibility 420ms ease;
+  transition: opacity 1400ms ease, visibility 1400ms ease;
 }
 
 .opening-screen::after {
@@ -83,6 +83,22 @@ a {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  user-select: none;
+}
+
+.name-overlay {
+  position: absolute;
+  left: 50%;
+  top: 51%;
+  z-index: 1;
+  width: min(82vw, 430px);
+  max-height: 20svh;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+  filter:
+    drop-shadow(0 8px 14px rgba(0, 8, 22, 0.54))
+    drop-shadow(0 0 18px rgba(163, 215, 255, 0.32));
+  pointer-events: none;
   user-select: none;
 }
 
@@ -283,7 +299,7 @@ a {
 .open-label {
   position: absolute;
   left: 50%;
-  bottom: max(26px, env(safe-area-inset-bottom));
+  bottom: max(22px, env(safe-area-inset-bottom));
   z-index: 1;
   width: min(76vw, 320px);
   transform: translateX(-50%);
@@ -439,5 +455,10 @@ a {
   .invite-video,
   .details-screen {
     border-radius: 23px;
+  }
+
+  .name-overlay {
+    width: min(82%, 320px);
+    max-height: 128px;
   }
 }
