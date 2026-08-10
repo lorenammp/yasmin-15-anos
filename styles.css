@@ -89,7 +89,7 @@ a {
 .name-overlay {
   position: absolute;
   left: 50%;
-  top: 51%;
+  top: 42%;
   z-index: 1;
   width: min(82vw, 430px);
   max-height: 20svh;
