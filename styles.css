@@ -29,8 +29,17 @@ button {
   font: inherit;
 }
 
+button,
+a {
+  touch-action: manipulation;
+}
+
 a {
   color: inherit;
+}
+
+.desktop-gate {
+  display: none;
 }
 
 .invite-shell {
@@ -183,7 +192,7 @@ a {
 }
 
 .modal-backdrop {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 10;
   display: grid;
@@ -304,5 +313,131 @@ a {
 @supports (height: 100dvh) {
   .invite-shell {
     height: 100dvh;
+  }
+}
+
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) {
+  body {
+    display: grid;
+    place-items: center;
+    padding: 28px;
+    background:
+      linear-gradient(180deg, rgba(4, 14, 30, 0.88), rgba(6, 18, 36, 0.96)),
+      url("assets/convite-abertura.png") center / cover;
+  }
+
+  .desktop-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: grid;
+    place-items: center;
+    padding: 28px;
+    background:
+      radial-gradient(circle at 50% 26%, rgba(162, 206, 255, 0.22), transparent 34%),
+      rgba(3, 12, 26, 0.78);
+    backdrop-filter: blur(9px);
+  }
+
+  body.desktop-accepted .desktop-gate {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 340ms ease, visibility 340ms ease;
+  }
+
+  .desktop-gate-card {
+    width: min(92vw, 460px);
+    padding: 34px 34px 32px;
+    border: 1px solid rgba(232, 246, 255, 0.84);
+    border-radius: 8px;
+    color: #17304d;
+    text-align: center;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(231, 246, 255, 0.88)),
+      #ccecff;
+    box-shadow:
+      0 26px 80px rgba(0, 7, 20, 0.58),
+      inset 0 0 30px rgba(255, 255, 255, 0.68);
+  }
+
+  .desktop-kicker {
+    margin: 0 0 8px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .desktop-gate-card h1 {
+    margin: 0 0 14px;
+    font-family: "Dancing Script", "Segoe Script", cursive;
+    font-size: 3.2rem;
+    line-height: 1;
+    letter-spacing: 0;
+    color: #123765;
+  }
+
+  .desktop-gate-card p {
+    margin: 0;
+    font-family: "Handlee", "Segoe Script", cursive;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .desktop-continue {
+    min-width: 168px;
+    margin-top: 24px;
+    padding: 12px 22px;
+    border: 1px solid rgba(244, 250, 255, 0.82);
+    border-radius: 999px;
+    color: #f7fbff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: linear-gradient(180deg, #315f96, #173c68);
+    box-shadow: 0 10px 22px rgba(15, 42, 78, 0.35);
+  }
+
+  .invite-shell {
+    position: relative;
+    inset: auto;
+    width: min(390px, calc(100vh * 0.46));
+    height: min(844px, calc(100vh - 56px));
+    border: 10px solid #07111f;
+    border-radius: 34px;
+    box-shadow:
+      0 28px 90px rgba(0, 7, 20, 0.72),
+      0 0 0 1px rgba(192, 220, 255, 0.18),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+
+  .invite-shell::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    z-index: 12;
+    width: 92px;
+    height: 21px;
+    border-radius: 0 0 14px 14px;
+    background: #07111f;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  body:not(.desktop-accepted) .invite-shell {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .opening-screen,
+  .invite-video,
+  .details-screen {
+    border-radius: 23px;
   }
 }

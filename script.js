@@ -5,6 +5,7 @@ const modalBackdrop = document.querySelector(".modal-backdrop");
 const modalTitle = document.querySelector("#modal-title");
 const modalText = document.querySelector("#modal-text");
 const closeModalButton = document.querySelector(".modal-close");
+const desktopContinueButton = document.querySelector(".desktop-continue");
 
 const modalContent = {
   date: {
@@ -91,4 +92,9 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     closeModal();
   }
+});
+
+desktopContinueButton?.addEventListener("click", () => {
+  document.body.classList.add("desktop-accepted");
+  openingScreen?.focus();
 });
