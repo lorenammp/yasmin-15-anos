@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#071427" />
+    <title>Convite Yasmin 15 anos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Handlee&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="invite-shell" aria-label="Convite de 15 anos da Yasmin">
+      <button class="opening-screen" type="button" aria-label="Clique para abrir o convite">
+        <img
+          class="opening-image"
+          src="assets/convite-abertura.png"
+          alt="Envelope azul em frente a um castelo iluminado à noite"
+        />
+        <span class="open-label">clique para abrir</span>
+      </button>
+
+      <video
+        class="invite-video"
+        src="assets/convite-video.mp4"
+        preload="auto"
+        playsinline
+      ></video>
+
+      <section class="details-screen" aria-label="Informações da festa">
+        <img
+          class="details-image"
+          src="assets/convite-final.png"
+          alt="Convite da Yasmin com informações da festa"
+        />
+
+        <button
+          class="hotspot hotspot-date"
+          type="button"
+          data-modal="date"
+          aria-label="Ver data da festa"
+        ></button>
+        <button
+          class="hotspot hotspot-time"
+          type="button"
+          data-modal="time"
+          aria-label="Ver horário da festa"
+        ></button>
+        <a
+          class="hotspot hotspot-place"
+          href="https://www.google.com/maps/search/?api=1&query=Rua%20Maria%20da%20F%C3%A9%2C%20262%2C%20Salgado%20Filho%2C%20Belo%20Horizonte%2C%20MG%2C%2030550250"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Abrir localização no mapa"
+        ></a>
+        <button
+          class="hotspot hotspot-gift"
+          type="button"
+          data-modal="gift"
+          aria-label="Ver sugestão de presente"
+        ></button>
+        <button
+          class="hotspot hotspot-dress"
+          type="button"
+          data-modal="dress"
+          aria-label="Ver sugestão de traje"
+        ></button>
+      </section>
+
+      <div class="modal-backdrop" hidden>
+        <article class="info-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+          <button class="modal-close" type="button" aria-label="Fechar">×</button>
+          <h2 id="modal-title"></h2>
+          <p id="modal-text"></p>
+        </article>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
