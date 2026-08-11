@@ -225,7 +225,7 @@ a {
 .info-modal {
   position: relative;
   width: min(86vw, 380px);
-  max-height: min(72vh, 480px);
+  max-height: min(82vh, 560px);
   padding: 34px 26px 30px;
   overflow: hidden;
   border: 1px solid rgba(251, 254, 255, 0.9);
@@ -277,6 +277,23 @@ a {
   font-weight: 600;
   letter-spacing: 0;
   line-height: 1.35;
+  white-space: pre-line;
+}
+
+.modal-backdrop[data-modal="gift"] .info-modal {
+  width: min(90vw, 380px);
+  padding: 28px 20px 24px;
+}
+
+.modal-backdrop[data-modal="gift"] .info-modal h2 {
+  margin-bottom: 8px;
+  font-size: clamp(1.72rem, 8vw, 2.35rem);
+}
+
+.modal-backdrop[data-modal="gift"] .info-modal p {
+  font-family: "Handlee", "Segoe Script", cursive;
+  font-size: clamp(0.9rem, 4.15vw, 1.12rem);
+  line-height: 1.17;
 }
 
 .modal-close {

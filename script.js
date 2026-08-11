@@ -18,7 +18,7 @@ const modalContent = {
   },
   gift: {
     title: "Presente",
-    text: "Sua presença já será um presente especial. Sugestões carinhosas chegarão por aqui.",
+    text: "PIX: 31986296394\n\nRoupas: blusa P; calça, short ou saia P ou M (38); tênis 37/38.\n\nAcessórios: colar, pulseira, anel 15/16 e brinco. Obs.: só uso prata.\n\nMais ideias: perfume, body splash, creme de pele, maquiagem e bolsa.",
   },
   dress: {
     title: "Traje",
@@ -40,6 +40,7 @@ const openModal = (modalId) => {
 
   modalTitle.textContent = content.title;
   modalText.textContent = content.text;
+  modalBackdrop.dataset.modal = modalId;
   modalBackdrop.hidden = false;
   closeModalButton?.focus();
 };
@@ -50,6 +51,7 @@ const closeModal = () => {
   }
 
   modalBackdrop.hidden = true;
+  delete modalBackdrop.dataset.modal;
 };
 
 openingScreen?.addEventListener("click", () => {
