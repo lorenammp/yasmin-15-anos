@@ -1,6 +1,7 @@
 const openingScreen = document.querySelector(".opening-screen");
 const inviteVideo = document.querySelector(".invite-video");
 const inviteAudio = document.querySelector(".invite-audio");
+const skipVideoButton = document.querySelector(".skip-video");
 const detailsScreen = document.querySelector(".details-screen");
 const modalBackdrop = document.querySelector(".modal-backdrop");
 const modalTitle = document.querySelector("#modal-title");
@@ -8,7 +9,9 @@ const modalBody = document.querySelector("#modal-body");
 const closeModalButton = document.querySelector(".modal-close");
 const desktopContinueButton = document.querySelector(".desktop-continue");
 const AUDIO_FADE_DURATION = 10000;
+const SKIP_BUTTON_VISIBLE_DURATION = 2600;
 let audioFadeFrame = null;
+let skipButtonTimer = null;
 
 const modalContent = {
   gift: {
@@ -41,7 +44,31 @@ const modalContent = {
 const showDetailsScreen = () => {
   detailsScreen?.classList.add("is-visible");
   inviteVideo?.classList.add("is-ended");
+  hideSkipButton();
   fadeOutAudio();
+};
+
+const hideSkipButton = () => {
+  if (skipButtonTimer) {
+    clearTimeout(skipButtonTimer);
+    skipButtonTimer = null;
+  }
+
+  skipVideoButton?.classList.remove("is-visible");
+};
+
+const showSkipButton = () => {
+  if (!inviteVideo || inviteVideo.paused || inviteVideo.ended) {
+    return;
+  }
+
+  skipVideoButton?.classList.add("is-visible");
+
+  if (skipButtonTimer) {
+    clearTimeout(skipButtonTimer);
+  }
+
+  skipButtonTimer = setTimeout(hideSkipButton, SKIP_BUTTON_VISIBLE_DURATION);
 };
 
 const stopAudioFade = () => {
@@ -150,6 +177,7 @@ openingScreen?.addEventListener("click", () => {
   inviteVideo.volume = 1;
   inviteVideo.currentTime = 0;
   inviteVideo.classList.remove("is-ended");
+  hideSkipButton();
   detailsScreen?.classList.remove("is-visible");
 
   if (inviteAudio) {
@@ -177,6 +205,14 @@ openingScreen?.addEventListener("click", () => {
 });
 
 inviteVideo?.addEventListener("ended", showDetailsScreen);
+
+inviteVideo?.addEventListener("click", showSkipButton);
+
+skipVideoButton?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  inviteVideo?.pause();
+  showDetailsScreen();
+});
 
 document.querySelectorAll("[data-modal]").forEach((button) => {
   button.addEventListener("click", () => {
