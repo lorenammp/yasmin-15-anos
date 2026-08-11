@@ -303,7 +303,7 @@ a {
 
 #modal-body p {
   margin: 0;
-  font-family: "Forum", "Times New Roman", serif;
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   font-size: clamp(1.04rem, 4.9vw, 1.32rem);
   font-weight: 400;
   letter-spacing: 0.025em;
@@ -335,7 +335,7 @@ a {
   align-items: center;
   gap: 7px;
   margin: 0 0 4px;
-  font-family: "Forum", "Times New Roman", serif;
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   font-size: clamp(0.86rem, 4vw, 1.02rem);
   font-weight: 400;
   line-height: 1;
@@ -368,7 +368,7 @@ a {
   position: relative;
   min-width: 0;
   padding-left: 10px;
-  font-family: "Forum", "Times New Roman", serif;
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   font-size: clamp(0.82rem, 3.7vw, 0.98rem);
   font-weight: 400;
   letter-spacing: 0.025em;
@@ -397,7 +397,7 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.82);
   border-radius: 10px;
   color: #11365e;
-  font-family: "Forum", "Times New Roman", serif;
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   font-size: clamp(0.95rem, 4.2vw, 1.1rem);
   font-weight: 400;
   letter-spacing: 0.03em;
@@ -420,7 +420,7 @@ a {
   min-height: 30px;
   border-radius: 999px;
   color: #f7fbff;
-  font-family: "Forum", "Times New Roman", serif;
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   font-size: 0.74rem;
   letter-spacing: 0.12em;
   background: linear-gradient(180deg, #5ca8dc, #2e75b3);
@@ -435,7 +435,7 @@ a {
 
 .gift-pix small {
   color: #315f85;
-  font-family: "Forum", "Times New Roman", serif;
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   font-size: 0.68rem;
   font-weight: 400;
   letter-spacing: 0.08em;
@@ -569,7 +569,7 @@ a {
 
   .desktop-gate-card p {
     margin: 0;
-    font-family: "Forum", "Times New Roman", serif;
+    font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
     font-size: 1.24rem;
     font-weight: 400;
     letter-spacing: 0.02em;
