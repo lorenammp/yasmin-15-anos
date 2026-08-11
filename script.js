@@ -3,22 +3,31 @@ const inviteVideo = document.querySelector(".invite-video");
 const detailsScreen = document.querySelector(".details-screen");
 const modalBackdrop = document.querySelector(".modal-backdrop");
 const modalTitle = document.querySelector("#modal-title");
-const modalText = document.querySelector("#modal-text");
+const modalBody = document.querySelector("#modal-body");
 const closeModalButton = document.querySelector(".modal-close");
 const desktopContinueButton = document.querySelector(".desktop-continue");
 
 const modalContent = {
-  date: {
-    title: "Data",
-    text: "Em breve confirmaremos a data desse sonho. Reserve esse momento com carinho.",
-  },
-  time: {
-    title: "Horário",
-    text: "A celebração está prevista para começar às 21 horas.",
-  },
   gift: {
     title: "Presente",
-    text: "PIX: 31986296394\n\nRoupas: blusa P; calça, short ou saia P ou M (38); tênis 37/38.\n\nAcessórios: colar, pulseira, anel 15/16 e brinco. Obs.: só uso prata.\n\nMais ideias: perfume, body splash, creme de pele, maquiagem e bolsa.",
+    sections: [
+      {
+        icon: "👗",
+        title: "Roupas",
+        items: ["Blusa P", "Calça, short ou saia P/M (38)", "Tênis 37/38"],
+      },
+      {
+        icon: "💍",
+        title: "Acessórios",
+        items: ["Colar", "Pulseira", "Anel 15/16", "Brinco", "Só uso prata"],
+      },
+      {
+        icon: "🎁",
+        title: "Mais ideias",
+        items: ["Perfume", "Body splash", "Creme de pele", "Maquiagem", "Bolsa"],
+      },
+    ],
+    pix: "31986296394",
   },
   dress: {
     title: "Traje",
@@ -27,19 +36,57 @@ const modalContent = {
 };
 
 const showDetailsScreen = () => {
-  inviteVideo?.classList.add("is-hidden");
   detailsScreen?.classList.add("is-visible");
+  inviteVideo?.classList.add("is-ended");
+};
+
+const renderGiftContent = (content) => {
+  const fragment = document.createDocumentFragment();
+
+  content.sections.forEach((section) => {
+    const group = document.createElement("section");
+    group.className = "gift-section";
+
+    const heading = document.createElement("h3");
+    heading.innerHTML = `<span aria-hidden="true">${section.icon}</span>${section.title}`;
+
+    const list = document.createElement("ul");
+    section.items.forEach((item) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = item;
+      list.appendChild(listItem);
+    });
+
+    group.append(heading, list);
+    fragment.appendChild(group);
+  });
+
+  const pix = document.createElement("p");
+  pix.className = "gift-pix";
+  pix.innerHTML = `<span>PIX</span> ${content.pix}`;
+  fragment.appendChild(pix);
+
+  return fragment;
 };
 
 const openModal = (modalId) => {
   const content = modalContent[modalId];
 
-  if (!content || !modalBackdrop || !modalTitle || !modalText) {
+  if (!content || !modalBackdrop || !modalTitle || !modalBody) {
     return;
   }
 
   modalTitle.textContent = content.title;
-  modalText.textContent = content.text;
+  modalBody.replaceChildren();
+
+  if (content.sections) {
+    modalBody.appendChild(renderGiftContent(content));
+  } else {
+    const text = document.createElement("p");
+    text.textContent = content.text;
+    modalBody.appendChild(text);
+  }
+
   modalBackdrop.dataset.modal = modalId;
   modalBackdrop.hidden = false;
   closeModalButton?.focus();
@@ -62,6 +109,8 @@ openingScreen?.addEventListener("click", () => {
   inviteVideo.muted = false;
   inviteVideo.volume = 1;
   inviteVideo.currentTime = 0;
+  inviteVideo.classList.remove("is-ended");
+  detailsScreen?.classList.remove("is-visible");
 
   const playPromise = inviteVideo.play();
 

@@ -54,7 +54,7 @@ a {
 .opening-screen {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 3;
   display: block;
   width: 100%;
   height: 100%;
@@ -111,13 +111,14 @@ a {
 .invite-video {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 2;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   background: #071427;
+  transition: opacity 520ms ease, visibility 520ms ease;
 }
 
 .invite-video.is-hidden {
@@ -126,23 +127,30 @@ a {
   pointer-events: none;
 }
 
+.invite-video.is-ended {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .details-screen {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
   overflow: hidden;
   background: #071427;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 520ms ease, visibility 520ms ease;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: none;
 }
 
 .details-screen.is-visible {
-  z-index: 3;
+  z-index: 1;
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 .details-image {
@@ -172,20 +180,6 @@ a {
   background: rgba(219, 239, 255, 0.12);
 }
 
-.hotspot-date {
-  left: 23%;
-  top: 53%;
-  width: 55%;
-  height: 4.7%;
-}
-
-.hotspot-time {
-  left: 23%;
-  top: 57.3%;
-  width: 55%;
-  height: 4.7%;
-}
-
 .hotspot-place {
   left: 18%;
   top: 61.6%;
@@ -213,7 +207,7 @@ a {
   z-index: 10;
   display: grid;
   place-items: center;
-  padding: 22px;
+  padding: 14px;
   background: rgba(3, 12, 26, 0.5);
   backdrop-filter: blur(5px);
 }
@@ -224,8 +218,8 @@ a {
 
 .info-modal {
   position: relative;
-  width: min(86vw, 380px);
-  max-height: min(82vh, 560px);
+  width: min(calc(100% - 22px), 350px);
+  max-height: calc(100% - 28px);
   padding: 34px 26px 30px;
   overflow: hidden;
   border: 1px solid rgba(251, 254, 255, 0.9);
@@ -270,7 +264,7 @@ a {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.78);
 }
 
-.info-modal p {
+#modal-body p {
   margin: 0;
   font-family: "Handlee", "Segoe Script", "Comic Sans MS", cursive;
   font-size: clamp(1.18rem, 5.6vw, 1.5rem);
@@ -281,19 +275,93 @@ a {
 }
 
 .modal-backdrop[data-modal="gift"] .info-modal {
-  width: min(90vw, 380px);
-  padding: 28px 20px 24px;
+  width: min(calc(100% - 18px), 342px);
+  padding: 26px 16px 18px;
 }
 
 .modal-backdrop[data-modal="gift"] .info-modal h2 {
-  margin-bottom: 8px;
-  font-size: clamp(1.72rem, 8vw, 2.35rem);
+  margin-bottom: 7px;
+  font-size: clamp(1.58rem, 7.2vw, 2.18rem);
 }
 
-.modal-backdrop[data-modal="gift"] .info-modal p {
+.gift-section {
+  margin: 0 0 7px;
+  padding: 8px 9px;
+  border: 1px solid rgba(75, 125, 178, 0.22);
+  border-radius: 8px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.gift-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 4px;
+  font-family: "Dancing Script", "Segoe Script", cursive;
+  font-size: clamp(1rem, 4.7vw, 1.2rem);
+  line-height: 1;
+  letter-spacing: 0;
+  color: #123765;
+}
+
+.gift-section h3 span {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-family: Arial, sans-serif;
+  font-size: 0.84rem;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.gift-section ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3px 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gift-section li {
+  position: relative;
+  min-width: 0;
+  padding-left: 10px;
   font-family: "Handlee", "Segoe Script", cursive;
-  font-size: clamp(0.9rem, 4.15vw, 1.12rem);
-  line-height: 1.17;
+  font-size: clamp(0.76rem, 3.55vw, 0.95rem);
+  font-weight: 700;
+  line-height: 1.08;
+}
+
+.gift-section li::before {
+  content: "";
+  position: absolute;
+  top: 0.45em;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #4977c9;
+}
+
+.gift-pix {
+  margin: 8px 0 0;
+  padding: 7px 10px;
+  border-radius: 999px;
+  color: #f7fbff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.82rem, 3.8vw, 0.98rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+  background: linear-gradient(180deg, #315f96, #173c68);
+}
+
+.gift-pix span {
+  margin-right: 6px;
+  letter-spacing: 0.08em;
 }
 
 .modal-close {
