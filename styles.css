@@ -321,6 +321,10 @@ a {
   font-size: clamp(1.58rem, 7.2vw, 2.18rem);
 }
 
+.modal-backdrop[data-modal="gift"] .info-modal::after {
+  display: none;
+}
+
 .gift-section {
   margin: 0 0 7px;
   padding: 8px 9px;
