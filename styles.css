@@ -303,11 +303,11 @@ a {
 
 #modal-body p {
   margin: 0;
-  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  font-size: clamp(1.12rem, 5.2vw, 1.42rem);
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: 1.28;
+  font-family: "Forum", "Times New Roman", serif;
+  font-size: clamp(1.04rem, 4.9vw, 1.32rem);
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  line-height: 1.34;
   white-space: pre-line;
 }
 
@@ -335,10 +335,12 @@ a {
   align-items: center;
   gap: 7px;
   margin: 0 0 4px;
-  font-family: "Dancing Script", "Segoe Script", cursive;
-  font-size: clamp(1rem, 4.7vw, 1.2rem);
+  font-family: "Forum", "Times New Roman", serif;
+  font-size: clamp(0.86rem, 4vw, 1.02rem);
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: 0;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: #123765;
 }
 
@@ -366,10 +368,11 @@ a {
   position: relative;
   min-width: 0;
   padding-left: 10px;
-  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  font-size: clamp(0.84rem, 3.8vw, 1rem);
-  font-weight: 600;
-  line-height: 1.02;
+  font-family: "Forum", "Times New Roman", serif;
+  font-size: clamp(0.82rem, 3.7vw, 0.98rem);
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  line-height: 1.06;
 }
 
 .gift-section li::before {
@@ -394,10 +397,10 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.82);
   border-radius: 10px;
   color: #11365e;
-  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-family: "Forum", "Times New Roman", serif;
   font-size: clamp(0.95rem, 4.2vw, 1.1rem);
-  font-weight: 700;
-  letter-spacing: 0;
+  font-weight: 400;
+  letter-spacing: 0.03em;
   line-height: 1.02;
   cursor: pointer;
   background:
@@ -417,9 +420,9 @@ a {
   min-height: 30px;
   border-radius: 999px;
   color: #f7fbff;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Forum", "Times New Roman", serif;
   font-size: 0.74rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   background: linear-gradient(180deg, #5ca8dc, #2e75b3);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.44);
 }
@@ -432,10 +435,10 @@ a {
 
 .gift-pix small {
   color: #315f85;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Forum", "Times New Roman", serif;
   font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-weight: 400;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -566,9 +569,10 @@ a {
 
   .desktop-gate-card p {
     margin: 0;
-    font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-    font-size: 1.3rem;
-    font-weight: 600;
+    font-family: "Forum", "Times New Roman", serif;
+    font-size: 1.24rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
     line-height: 1.35;
   }
 
