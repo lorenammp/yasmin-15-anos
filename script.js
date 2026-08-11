@@ -1,11 +1,14 @@
 const openingScreen = document.querySelector(".opening-screen");
 const inviteVideo = document.querySelector(".invite-video");
+const inviteAudio = document.querySelector(".invite-audio");
 const detailsScreen = document.querySelector(".details-screen");
 const modalBackdrop = document.querySelector(".modal-backdrop");
 const modalTitle = document.querySelector("#modal-title");
 const modalBody = document.querySelector("#modal-body");
 const closeModalButton = document.querySelector(".modal-close");
 const desktopContinueButton = document.querySelector(".desktop-continue");
+const AUDIO_FADE_DURATION = 10000;
+let audioFadeFrame = null;
 
 const modalContent = {
   gift: {
@@ -38,6 +41,42 @@ const modalContent = {
 const showDetailsScreen = () => {
   detailsScreen?.classList.add("is-visible");
   inviteVideo?.classList.add("is-ended");
+  fadeOutAudio();
+};
+
+const stopAudioFade = () => {
+  if (audioFadeFrame) {
+    cancelAnimationFrame(audioFadeFrame);
+    audioFadeFrame = null;
+  }
+};
+
+const fadeOutAudio = () => {
+  if (!inviteAudio || inviteAudio.paused) {
+    return;
+  }
+
+  stopAudioFade();
+
+  const startVolume = inviteAudio.volume;
+  const startTime = performance.now();
+
+  const fadeStep = (now) => {
+    const progress = Math.min((now - startTime) / AUDIO_FADE_DURATION, 1);
+    inviteAudio.volume = Math.max(startVolume * (1 - progress), 0);
+
+    if (progress < 1) {
+      audioFadeFrame = requestAnimationFrame(fadeStep);
+      return;
+    }
+
+    inviteAudio.pause();
+    inviteAudio.currentTime = 0;
+    inviteAudio.volume = 1;
+    audioFadeFrame = null;
+  };
+
+  audioFadeFrame = requestAnimationFrame(fadeStep);
 };
 
 const renderGiftContent = (content) => {
@@ -106,21 +145,35 @@ openingScreen?.addEventListener("click", () => {
     return;
   }
 
+  stopAudioFade();
   inviteVideo.muted = false;
   inviteVideo.volume = 1;
   inviteVideo.currentTime = 0;
   inviteVideo.classList.remove("is-ended");
   detailsScreen?.classList.remove("is-visible");
 
-  const playPromise = inviteVideo.play();
+  if (inviteAudio) {
+    inviteAudio.muted = false;
+    inviteAudio.volume = 1;
+    inviteAudio.currentTime = 0;
+  }
+
+  const videoPlayPromise = inviteVideo.play();
+  const audioPlayPromise = inviteAudio?.play();
 
   openingScreen.classList.add("is-hidden");
 
-  if (playPromise) {
-    playPromise.catch(() => {
+  Promise.allSettled([
+    videoPlayPromise || Promise.resolve(),
+    audioPlayPromise || Promise.resolve(),
+  ]).then((results) => {
+    const videoRejected = results[0]?.status === "rejected";
+
+    if (videoRejected) {
       openingScreen.classList.remove("is-hidden");
-    });
-  }
+      inviteAudio?.pause();
+    }
+  });
 });
 
 inviteVideo?.addEventListener("ended", showDetailsScreen);
