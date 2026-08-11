@@ -127,12 +127,31 @@ const renderGiftContent = (content) => {
     fragment.appendChild(group);
   });
 
-  const pix = document.createElement("p");
+  const pix = document.createElement("button");
   pix.className = "gift-pix";
-  pix.innerHTML = `<span>PIX</span> ${content.pix}`;
+  pix.type = "button";
+  pix.dataset.pix = content.pix;
+  pix.innerHTML = `<span>PIX</span><strong>${content.pix}</strong><small>toque para copiar</small>`;
   fragment.appendChild(pix);
 
   return fragment;
+};
+
+const copyText = async (text) => {
+  if (navigator.clipboard && window.isSecureContext) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+
+  const input = document.createElement("textarea");
+  input.value = text;
+  input.setAttribute("readonly", "");
+  input.style.position = "fixed";
+  input.style.opacity = "0";
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand("copy");
+  input.remove();
 };
 
 const openModal = (modalId) => {
@@ -221,6 +240,23 @@ document.querySelectorAll("[data-modal]").forEach((button) => {
 });
 
 closeModalButton?.addEventListener("click", closeModal);
+
+modalBody?.addEventListener("click", (event) => {
+  const pixButton = event.target.closest(".gift-pix");
+
+  if (!pixButton) {
+    return;
+  }
+
+  copyText(pixButton.dataset.pix)
+    .then(() => {
+      pixButton.classList.add("is-copied");
+      pixButton.querySelector("small").textContent = "PIX copiado";
+    })
+    .catch(() => {
+      pixButton.querySelector("small").textContent = "toque e segure para copiar";
+    });
+});
 
 modalBackdrop?.addEventListener("click", (event) => {
   if (event.target === modalBackdrop) {
