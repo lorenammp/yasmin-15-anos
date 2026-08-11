@@ -188,17 +188,24 @@ a {
 }
 
 .hotspot-gift {
-  left: 25%;
-  top: 70.7%;
-  width: 23%;
-  height: 8.8%;
+  left: 23%;
+  top: 69.7%;
+  width: 20%;
+  height: 8.2%;
 }
 
 .hotspot-dress {
-  left: 56%;
-  top: 70.7%;
-  width: 22%;
-  height: 8.8%;
+  left: 46%;
+  top: 69.7%;
+  width: 17%;
+  height: 8.2%;
+}
+
+.hotspot-rsvp {
+  left: 65%;
+  top: 69.7%;
+  width: 20%;
+  height: 8.2%;
 }
 
 .modal-backdrop {

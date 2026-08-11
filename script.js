@@ -34,7 +34,7 @@ const modalContent = {
   },
   dress: {
     title: "Traje",
-    text: "Venha em traje social, com um toque de encanto para uma noite de conto de fadas.",
+    text: "Venha em traje social, com um toque de encanto para uma noite de conto de fadas.\n\nPedimos gentilmente que evite trajes azuis, pois essa cor será reservada para a aniversariante.",
   },
 };
 
